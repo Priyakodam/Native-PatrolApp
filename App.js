@@ -1,19 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import RegisterScreen from "./screens/Register/RegisterScreen" ;
+import NavScreen from './screens/Navbar/NavScreen';
+import ScheduleScreen from './screens/Schedule/ScheduleScreen';
+import RecordScreen from './screens/Record/RecordScreen';
+import ChecklistScreen from './screens/Checklist/ChecklistScreen';
+import QRScreen from './screens/QRCodeScanner/QRCodeScreen';
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="NavScreen" component={NavScreen} />
+        <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Schedule" component={ScheduleScreen} />
+        <Stack.Screen name="Checklist" component={ChecklistScreen} />
+        <Stack.Screen name="Record" component={RecordScreen} />
+        <Stack.Screen name="QRScreen" component={QRScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
