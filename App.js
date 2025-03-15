@@ -1,14 +1,15 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { StyleSheet, Text, View, Button } from "react-native";
-import RegisterScreen from "./screens/Register/RegisterScreen";
-import NavScreen from "./screens/Navbar/NavScreen";
-import ScheduleScreen from "./screens/Schedule/ScheduleScreen";
-import RecordScreen from "./screens/Record/RecordScreen";
-import ChecklistScreen from "./screens/Checklist/ChecklistScreen";
-import QRScreen from "./screens/QRCodeScanner/QRCodeScreen";
-import OtpScreen from "./screens/Otp/OtpScreen";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import RegisterScreen from "./screens/Register/RegisterScreen" ;
+import NavScreen from './screens/Navbar/NavScreen';
+import ScheduleScreen from './screens/Schedule/ScheduleScreen';
+import RecordScreen from './screens/Record/RecordScreen';
+import ChecklistScreen from './screens/Checklist/ChecklistScreen';
+import QRScreen from './screens/QRCodeScanner/QRCodeScreen';
+import OtpScreen from './screens/Otp/OtpScreen';
+
 const Stack = createStackNavigator();
 
 export default function App() {
