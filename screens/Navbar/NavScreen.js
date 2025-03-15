@@ -41,8 +41,8 @@ const NavScreen = () => {
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate("Schedule")}>
-  <Icon name="calendar" size={22} color={activeIcon === "schedule" ? "black" : "white"} />
-</TouchableOpacity>
+          <Icon name="calendar" size={22} color={activeIcon === "schedule" ? "black" : "white"} />
+        </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate("Checklist")}>
           <Icon name="clipboard" size={22} color={activeIcon === "checklist" ? "black" : "white"} />

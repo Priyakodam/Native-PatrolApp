@@ -42,14 +42,7 @@ const RegisterScreen = () => {
       <View style={styles.registerCard}>
         <Image source={logo} style={styles.logo} />
         <Text style={styles.title}>Register Your Account</Text>
-
-        {/* <TextInput
-          style={styles.input}
-          placeholder="Full Name"
-          placeholderTextColor="#888"
-          value={fullName}
-          onChangeText={setFullName}
-        /> */}
+        
         <TextInput
           style={styles.input}
           placeholder="Phone number"
