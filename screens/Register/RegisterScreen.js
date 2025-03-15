@@ -14,11 +14,11 @@ import logo from "../../assets/solidz_logo.avif";
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
-  const [fullName, setFullName] = useState("");
+  // const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleRegister = () => {
-    if (!fullName || !phoneNumber) {
+    if (!phoneNumber) {
       Alert.alert("Error", "Please enter all fields.");
       return;
     }
