@@ -16,12 +16,12 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Register"
           component={RegisterScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Otp" component={OtpScreen} />
+        <Stack.Screen name="Otp" component={OtpScreen} />  */}
         <Stack.Screen name="Nav" component={NavScreen} />
         <Stack.Screen name="Schedule" component={ScheduleScreen} />
         <Stack.Screen name="Checklist" component={ChecklistScreen} />

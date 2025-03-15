@@ -1,14 +1,21 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import styles from "./QRCodeStyles";
+import { View, Text, TouchableOpacity } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from './QRCodeStyles';
 
-export default function QRScreen({ navigation }) {
+const QRScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text>Welcome to QR Screen</Text>
-      <Button title="Go to Details" onPress={() => navigation.navigate('Details')} />
+      {/* QR Scan Section */}
+      <View style={styles.qrSection}>
+        <Icon name="camera" size={100} color="gray" style={styles.cameraIcon} />
+        
+        <TouchableOpacity style={styles.scanButton} onPress={() => console.log("Scanning...")}>
+          <Text style={styles.scanButtonText}>Scan QR Code</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
-}
+};
 
-
+export default QRScreen;

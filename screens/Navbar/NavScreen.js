@@ -20,7 +20,9 @@ const NavScreen = () => {
       <View style={styles.topBar}>
         <Image source={logo} style={styles.logo} />
         <View style={styles.topRightIcons}>
-          <TouchableOpacity onPress={() => console.log("Notifications clicked")}>
+          <TouchableOpacity
+            onPress={() => console.log("Notifications clicked")}
+          >
             <Icon name="bell" size={25} color="#2a2927" />
           </TouchableOpacity>
 
@@ -32,20 +34,36 @@ const NavScreen = () => {
 
       {/* Bottom Navbar */}
       <View style={styles.glassNavbar}>
-        <TouchableOpacity onPress={() =>navigation.navigate("QRScreen")}>
-          <Icon name="microphone" size={22} color={activeIcon === "QRScreen" ? "black" : "white"} />
+        <TouchableOpacity onPress={() => navigation.navigate("QRScreen")}>
+          <Icon
+            name="qrcode"
+            size={22}
+            color={activeIcon === "QRScreen" ? "black" : "white"}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate("Record")}>
-          <Icon name="microphone" size={22} color={activeIcon === "record" ? "black" : "white"} />
+          <Icon
+            name="microphone"
+            size={22}
+            color={activeIcon === "record" ? "black" : "white"}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate("Schedule")}>
-          <Icon name="calendar" size={22} color={activeIcon === "schedule" ? "black" : "white"} />
+          <Icon
+            name="calendar"
+            size={22}
+            color={activeIcon === "schedule" ? "black" : "white"}
+          />
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => navigation.navigate("Checklist")}>
-          <Icon name="clipboard" size={22} color={activeIcon === "checklist" ? "black" : "white"} />
+          <Icon
+            name="clipboard"
+            size={22}
+            color={activeIcon === "checklist" ? "black" : "white"}
+          />
         </TouchableOpacity>
       </View>
     </>
