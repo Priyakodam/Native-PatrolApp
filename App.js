@@ -8,14 +8,17 @@ import ScheduleScreen from './screens/Schedule/ScheduleScreen';
 import RecordScreen from './screens/Record/RecordScreen';
 import ChecklistScreen from './screens/Checklist/ChecklistScreen';
 import QRScreen from './screens/QRCodeScanner/QRCodeScreen';
+import OtpScreen from './screens/Otp/OtpScreen';
+
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="NavScreen" component={NavScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="Otp" component={OtpScreen} />
+        <Stack.Screen name="Nav" component={NavScreen} />
         <Stack.Screen name="Schedule" component={ScheduleScreen} />
         <Stack.Screen name="Checklist" component={ChecklistScreen} />
         <Stack.Screen name="Record" component={RecordScreen} />
@@ -25,12 +28,10 @@ export default function App() {
   );
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
