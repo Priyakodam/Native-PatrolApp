@@ -8,6 +8,7 @@ import ScheduleScreen from './screens/Schedule/ScheduleScreen';
 import RecordScreen from './screens/Record/RecordScreen';
 import ChecklistScreen from './screens/Checklist/ChecklistScreen';
 import QRScreen from './screens/QRCodeScanner/QRCodeScreen';
+import OTPScreen from './screens/Otp/OtpScreen';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="NavScreen" component={NavScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
+        <Stack.Screen name="OTP" component={OTPScreen} />
         <Stack.Screen name="Schedule" component={ScheduleScreen} />
         <Stack.Screen name="Checklist" component={ChecklistScreen} />
         <Stack.Screen name="Record" component={RecordScreen} />
