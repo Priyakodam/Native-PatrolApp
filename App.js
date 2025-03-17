@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, View } from "react-native";
 import RegisterScreen from "./screens/Register/RegisterScreen";
 import NavScreen from "./screens/Navbar/NavScreen";
 import ScheduleScreen from "./screens/Schedule/ScheduleScreen";
@@ -12,21 +12,52 @@ import OtpScreen from "./screens/Otp/OtpScreen";
 
 const Stack = createStackNavigator();
 
+// Higher-Order Component to wrap screens with NavScreen
+const ScreenWithNav = ({ component: Component }) => {
+  return (
+    <View style={styles.container}>
+      <Component />
+      <NavScreen />
+    </View>
+  );
+};
+
 export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        {/* No Navbar on Register and OTP Screens */}
+        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Otp" component={OtpScreen} options={{ headerShown: false }} />
+
+        {/* Screens with Navbar */}
         <Stack.Screen
-          name="Register"
-          component={RegisterScreen}
+          name="Schedule"
           options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Otp" component={OtpScreen} options={{ headerShown: false }} /> 
-        <Stack.Screen name="Nav" component={NavScreen}  options={{ headerShown: false }}/>
-        <Stack.Screen name="Schedule" component={ScheduleScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Checklist" component={ChecklistScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Record" component={RecordScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="QRScreen" component={QRScreen} options={{ headerShown: false }}/>
+        >
+          {() => <ScreenWithNav component={ScheduleScreen} />}
+        </Stack.Screen>
+
+        <Stack.Screen
+          name="Checklist"
+          options={{ headerShown: false }}
+        >
+          {() => <ScreenWithNav component={ChecklistScreen} />}
+        </Stack.Screen>
+
+        <Stack.Screen
+          name="Record"
+          options={{ headerShown: false }}
+        >
+          {() => <ScreenWithNav component={RecordScreen} />}
+        </Stack.Screen>
+
+        <Stack.Screen
+          name="QRScreen"
+          options={{ headerShown: false }}
+        >
+          {() => <ScreenWithNav component={QRScreen} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -35,7 +66,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
 });

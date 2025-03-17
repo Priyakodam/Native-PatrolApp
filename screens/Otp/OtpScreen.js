@@ -39,7 +39,7 @@ export default function OTPScreen({ route, navigation }) {
 
     if (enteredOTP === generatedOTP) {
       Alert.alert("Success", "OTP Verified Successfully!");
-      navigation.navigate("Nav"); // Navigate to main screen
+      navigation.navigate("QRScreen"); // Navigate to main screen
     } else {
       Alert.alert("Error", "Incorrect OTP! Try again.");
       navigation.navigate("Register"); // Go back to Register
