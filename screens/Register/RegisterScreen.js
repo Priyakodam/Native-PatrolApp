@@ -13,7 +13,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./RegisterStyles";
-import logo from "../../assets/solidz_logo.avif";
+import logo from "../Img/solidz_logo_png.png";
 
 const RegisterScreen = () => {
   const navigation = useNavigation();

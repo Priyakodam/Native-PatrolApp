@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Image } from "react-native";
 import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styles from "./NavStyle";
-import logo from "../../assets/solidz_logo.avif";
+import logo from "../Img/solidz_logo_png.png";
 
 const NavScreen = () => {
   const navigation = useNavigation();

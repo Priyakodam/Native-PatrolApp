@@ -11,7 +11,7 @@ import {
   Platform,
 } from "react-native";
 import styles from "./OtpStyles";
-import logo from "../../assets/solidz_logo.avif";
+import logo from "../Img/solidz_logo_png.png";
 
 export default function OTPScreen({ route, navigation }) {
   const { generatedOTP } = route.params;
