@@ -50,7 +50,7 @@ export default function ChecklistScreen({ navigation }) {
       />
       <Button title="Reset Checklist" onPress={resetChecklist} />
       <Button title="Submit Report" onPress={() => alert('Checklist Submitted!')} />
-      <Button title="Go to Dashboard" onPress={() => navigation.navigate('Dashboard')} />
+      <Button title="Go to Dashboard" onPress={() => navigation.navigate('Nav')} />
     </View>
   );
 }

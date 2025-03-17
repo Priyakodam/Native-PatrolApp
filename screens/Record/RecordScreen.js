@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { Camera } from "expo-camera";
 import { Audio } from "expo-av";
 import Icon from "react-native-vector-icons/FontAwesome";
+import * as DocumentPicker from 'expo-document-picker';
+import { Video } from 'expo-av'; // Import Video component for video playback
 
 import styles from "./RecordStyles";
 
@@ -98,6 +100,15 @@ const RecordScreen = () => {
     }
   };
 
+  const handleUpload = async () => {
+    const result = await DocumentPicker.getDocumentAsync({});
+    if (result.type === 'success') {
+      Alert.alert("File uploaded", `File name: ${result.name}`);
+    } else {
+      Alert.alert("Upload cancelled");
+    }
+  };
+
   useEffect(() => {
     return sound ? () => sound.unloadAsync() : undefined;
   }, [sound]);
@@ -166,12 +177,35 @@ const RecordScreen = () => {
           </TouchableOpacity>
         )}
 
-        {recordedUri && recordType === "audio" && (
-          <TouchableOpacity style={styles.playButton} onPress={handlePlayRecording}>
-            <Icon name="play" size={30} color="#fff" />
-            <Text style={styles.buttonText}>Play Audio</Text>
-          </TouchableOpacity>
+        {recordedUri && (
+          <View style={styles.previewContainer}>
+            {recordType === "audio" ? (
+              <>
+                <TouchableOpacity style={styles.playButton} onPress={handlePlayRecording}>
+                  <Icon name="play" size={30} color="#fff" />
+                  <Text style={styles.buttonText}>Play Audio</Text>
+                </TouchableOpacity>
+                <Text style={styles.previewText}>Audio recorded: {recordedUri}</Text>
+              </>
+            ) : (
+              <>
+                <Text style={styles.previewText}>Video recorded: {recordedUri}</Text>
+                <Video
+                  source={{ uri: recordedUri }}
+                  style={{ width: 300, height: 300 }}
+                  useNativeControls
+                  resizeMode="contain"
+                  isLooping
+                />
+              </>
+            )}
+          </View>
         )}
+
+        <TouchableOpacity style={styles.uploadButton} onPress={handleUpload}>
+          <Icon name="upload" size={30} color="#fff" />
+          <Text style={styles.buttonText}>Upload</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

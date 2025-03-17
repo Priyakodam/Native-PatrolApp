@@ -1,38 +1,38 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111',
-    paddingTop: 50,
-    paddingHorizontal: 20,
-    
-  },
-  profileIcon: {
-    position: 'absolute',
-    top: 20,
-    right: 20,
-    zIndex: 10,
-  },
-  qrSection: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
-  cameraIcon: {
-    marginBottom: 20,
+  message: {
+    textAlign: 'center',
+    paddingBottom: 10,
   },
-  scanButton: {
-    backgroundColor: 'gray',
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    borderRadius: 25,
+  camera: {
+    flex: 1,
   },
-  scanButtonText: {
+  controls: {
+    position: 'absolute',
+    bottom: 30,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 15,
+    borderRadius: 10,
+  },
+  captureButton: {
+    backgroundColor: 'red',
+    padding: 15,
+    borderRadius: 10,
+  },
+  buttonText: {
     color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
+    padding: 10,
   },
 });
-
-export default styles;

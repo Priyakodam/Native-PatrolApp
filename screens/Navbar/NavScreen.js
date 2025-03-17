@@ -26,8 +26,8 @@ const NavScreen = () => {
             <Icon name="bell" size={25} color="#2a2927" />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => console.log("Profile clicked")}>
-            <Icon name="user-circle" size={32} color="#2a2927" />
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+            <Icon name="sign-out" size={32} color="#2a2927" />
           </TouchableOpacity>
         </View>
       </View>

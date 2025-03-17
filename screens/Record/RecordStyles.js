@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   recordingStatus: {
     fontSize: 16,
     marginBottom: 10,
+    color: "#fff",
   },
   recordButton: {
     backgroundColor: "#28a745",
@@ -52,7 +53,21 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  uploadButton: {
+    backgroundColor: "#007bff",
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
   buttonText: {
+    color: "#fff",
+    marginTop: 5,
+  },
+  previewContainer: {
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  previewText: {
     color: "#fff",
     marginTop: 5,
   },

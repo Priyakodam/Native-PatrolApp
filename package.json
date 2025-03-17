@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "expo start"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "expo": "^52.0.39",
     "expo-av": "~15.0.2",
     "expo-camera": "~16.0.18",
+    "expo-document-picker": "~13.0.3",
     "react": "^18.3.1",
     "react-dom": "18.3.1",
     "react-native": "^0.76.7",
