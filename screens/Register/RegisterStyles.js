@@ -1,4 +1,9 @@
 import { StyleSheet } from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize,
+} from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({
   container: {
@@ -8,49 +13,49 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   registerCard: {
-    width: "85%",
+    width: responsiveWidth(90), // Responsive width
     backgroundColor: "#d3d3d3", // Light grey card
-    borderRadius: 15,
-    padding: 20,
+    borderRadius: responsiveWidth(5), // Responsive border radius
+    padding: responsiveWidth(5), // Responsive padding
     alignItems: "center",
     shadowColor: "#fff",
     shadowOpacity: 0.4,
     shadowRadius: 10,
   },
   logo: {
-    width: 100,
-    height: 50,
+    width: responsiveWidth(30), // Adjusted width
+    height: responsiveHeight(10), // Adjusted height
     resizeMode: "contain",
-    marginBottom: 10,
+    marginBottom: responsiveHeight(2),
   },
   title: {
-    fontSize: 18,
+    fontSize: responsiveFontSize(2.5),
     fontWeight: "bold",
     color: "#222",
-    marginBottom: 20,
+    marginBottom: responsiveHeight(2),
   },
   input: {
-    width: "100%",
-    height: 45,
+    width: responsiveWidth(80),
+    height: responsiveHeight(6),
     backgroundColor: "#fff",
-    borderRadius: 8,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    fontSize: 16,
+    borderRadius: responsiveWidth(2),
+    paddingHorizontal: responsiveWidth(3),
+    marginBottom: responsiveHeight(2),
+    fontSize: responsiveFontSize(2),
     color: "#000",
     elevation: 2,
   },
   button: {
-    width: "100%",
-    height: 45,
+    width: responsiveWidth(80),
+    height: responsiveHeight(6),
     backgroundColor: "#000",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 8,
+    borderRadius: responsiveWidth(2),
   },
   buttonText: {
     color: "#fff",
-    fontSize: 16,
+    fontSize: responsiveFontSize(2),
     fontWeight: "bold",
   },
 });

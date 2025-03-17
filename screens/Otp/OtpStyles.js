@@ -1,4 +1,9 @@
 import { StyleSheet } from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize,
+} from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({
   container: {
@@ -8,61 +13,67 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   otpCard: {
-    width: "85%",
+    width: responsiveWidth(85), // 85% of screen width
     backgroundColor: "#d3d3d3", // Light grey card
-    borderRadius: 15,
-    padding: 20,
+    borderRadius: responsiveWidth(4), // Adjust border radius dynamically
+    padding: responsiveWidth(5),
     alignItems: "center",
     shadowColor: "#fff",
     shadowOpacity: 0.4,
     shadowRadius: 10,
   },
   logo: {
-    width: 100,
-    height: 50,
+    width: responsiveWidth(25), // 25% of screen width
+    height: responsiveHeight(10), // 10% of screen height
     resizeMode: "contain",
-    marginBottom: 10,
+    marginBottom: responsiveHeight(2),
   },
   message: {
-    fontSize: 18,
+    fontSize: responsiveFontSize(2.2),
     fontWeight: "bold",
     color: "#222",
   },
   subMessage: {
-    fontSize: 14,
+    fontSize: responsiveFontSize(1.8),
     color: "#555",
-    marginBottom: 10,
+    marginBottom: responsiveHeight(2),
   },
   phoneNumber: {
-    fontSize: 18,
+    fontSize: responsiveFontSize(2),
     color: "blue",
     fontWeight: "bold",
-    marginBottom: 20,
+    marginBottom: responsiveHeight(2),
   },
   otpInputContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
   otpBox: {
-    width: 40,
-    height: 40,
+    width: responsiveWidth(10),
+    height: responsiveWidth(10),
     backgroundColor: "#fff",
     textAlign: "center",
-    fontSize: 18,
-    borderRadius: 5,
-    marginHorizontal: 5,
+    fontSize: responsiveFontSize(2.2),
+    borderRadius: responsiveWidth(2),
+    marginHorizontal: responsiveWidth(1.5),
     elevation: 2,
   },
   didntReceive: {
-    fontSize: 14,
+    fontSize: responsiveFontSize(1.8),
     color: "#333",
-    marginTop: 20,
+    marginTop: responsiveHeight(2),
   },
   resendText: {
-    fontSize: 16,
+    fontSize: responsiveFontSize(2),
     color: "black",
     fontWeight: "bold",
-    marginTop: 5,
+    marginTop: responsiveHeight(1),
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: responsiveHeight(3),
   },
 });
 

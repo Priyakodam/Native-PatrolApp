@@ -1,34 +1,52 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform} from "react-native";
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize,
+} from "react-native-responsive-dimensions";
 
 const styles = StyleSheet.create({
   topBar: {
+    position: "absolute", 
+    top: 15,
+    left: 0,
+    width: "100%",
+    height: responsiveHeight(10),
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: 15,
-    backgroundColor: "black",
+    paddingHorizontal: responsiveWidth(5), 
+    // paddingVertical: responsiveHeight(2.5), 
+    backgroundColor: "white",
+    borderBottomWidth: 1,
+    borderBottomColor: "#282927",
+    zIndex: 1000,
+    elevation: 5, 
+    shadowColor: "#000", 
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   },
   logo: {
-    height: 50,
-    width: 100,
+    height: responsiveHeight(7), // Adjust height based on screen size
+    width: responsiveWidth(25), // Adjust width based on screen size
     resizeMode: "contain",
   },
   topRightIcons: {
     flexDirection: "row",
-    gap: 15,
+    gap: responsiveWidth(4), // Dynamic gap
   },
   glassNavbar: {
     position: "absolute",
-    bottom: 10,
+    bottom: responsiveHeight(2), // Responsive bottom spacing
     left: "50%",
-    transform: [{ translateX: -150 }],
-    width: 300,
+    transform: [{ translateX: -responsiveWidth(40) }], // Adjusted for new width
+    width: responsiveWidth(80), // Increased width
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "black",
-    padding: 10,
-    borderRadius: 30,
+    padding: responsiveWidth(6), 
+    borderRadius: responsiveWidth(10), 
     shadowColor: "#fff",
     shadowOpacity: 0.5,
     shadowRadius: 10,
@@ -36,3 +54,4 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
+

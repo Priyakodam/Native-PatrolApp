@@ -16,17 +16,17 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Register"
           component={RegisterScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Otp" component={OtpScreen} />  */}
-        <Stack.Screen name="Nav" component={NavScreen} />
-        <Stack.Screen name="Schedule" component={ScheduleScreen} />
-        <Stack.Screen name="Checklist" component={ChecklistScreen} />
-        <Stack.Screen name="Record" component={RecordScreen} />
-        <Stack.Screen name="QRScreen" component={QRScreen} />
+        <Stack.Screen name="Otp" component={OtpScreen} options={{ headerShown: false }} /> 
+        <Stack.Screen name="Nav" component={NavScreen}  options={{ headerShown: false }}/>
+        <Stack.Screen name="Schedule" component={ScheduleScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Checklist" component={ChecklistScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Record" component={RecordScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="QRScreen" component={QRScreen} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

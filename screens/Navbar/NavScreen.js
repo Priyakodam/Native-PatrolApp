@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image,   } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styles from "./NavStyle";
@@ -37,7 +37,7 @@ const NavScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate("QRScreen")}>
           <Icon
             name="qrcode"
-            size={22}
+            size={24}
             color={activeIcon === "QRScreen" ? "black" : "white"}
           />
         </TouchableOpacity>
@@ -45,7 +45,7 @@ const NavScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Record")}>
           <Icon
             name="microphone"
-            size={22}
+            size={24}
             color={activeIcon === "record" ? "black" : "white"}
           />
         </TouchableOpacity>
@@ -53,7 +53,7 @@ const NavScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Schedule")}>
           <Icon
             name="calendar"
-            size={22}
+            size={24}
             color={activeIcon === "schedule" ? "black" : "white"}
           />
         </TouchableOpacity>
@@ -61,7 +61,7 @@ const NavScreen = () => {
         <TouchableOpacity onPress={() => navigation.navigate("Checklist")}>
           <Icon
             name="clipboard"
-            size={22}
+            size={24}
             color={activeIcon === "checklist" ? "black" : "white"}
           />
         </TouchableOpacity>
