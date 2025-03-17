@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     height: responsiveHeight(15),
     width: responsiveWidth(25),
     resizeMode: "contain",
-    marginTop: responsiveHeight(2), 
+    marginTop: responsiveHeight(3), 
   },
   topRightIcons: {
     flexDirection: "row",
     gap: responsiveWidth(4),
-    marginTop: responsiveHeight(2),
+    marginTop: responsiveHeight(3),
   },
   glassNavbar: {
     position: "absolute",
