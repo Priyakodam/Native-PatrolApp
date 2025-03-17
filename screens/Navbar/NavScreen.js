@@ -31,9 +31,13 @@ const NavScreen = () => {
           <TouchableOpacity onPress={() => console.log("Notifications clicked")}>
             <Icon name="bell" size={25} color="#2a2927" />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => console.log("Profile clicked")}>
+          {/* <TouchableOpacity onPress={() => console.log("Profile clicked")}>
             <Icon name="user-circle" size={32} color="#2a2927" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+  <Icon name="sign-out" size={32} color="#2a2927" />
+</TouchableOpacity>
+
         </View>
       </View>
 
