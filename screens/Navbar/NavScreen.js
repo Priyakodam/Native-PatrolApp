@@ -1,17 +1,25 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image,   } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import React, { useState, useEffect } from "react";
+import { View, TouchableOpacity, Image } from "react-native";
+import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import styles from "./NavStyle";
 import logo from "../../assets/solidz_logo.avif";
 
 const NavScreen = () => {
   const navigation = useNavigation();
-  const [activeIcon, setActiveIcon] = useState("qrscan");
+  const route = useRoute();
+  const [activeIcon, setActiveIcon] = useState(route.name); // Set the initial active icon based on current route
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setActiveIcon(route.name); // Update active icon when the screen is focused
+    }, [route.name])
+  );
 
   const handleIconClick = (iconName) => {
-    setActiveIcon(iconName);
-    navigation.navigate(iconName);
+    if (route.name !== iconName) {
+      navigation.navigate(iconName);
+    }
   };
 
   return (
@@ -20,51 +28,42 @@ const NavScreen = () => {
       <View style={styles.topBar}>
         <Image source={logo} style={styles.logo} />
         <View style={styles.topRightIcons}>
-          <TouchableOpacity
-            onPress={() => console.log("Notifications clicked")}
-          >
+          <TouchableOpacity onPress={() => console.log("Notifications clicked")}>
             <Icon name="bell" size={25} color="#2a2927" />
           </TouchableOpacity>
-
+          {/* <TouchableOpacity onPress={() => console.log("Profile clicked")}>
+            <Icon name="user-circle" size={32} color="#2a2927" />
+          </TouchableOpacity> */}
           <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-            <Icon name="sign-out" size={32} color="#2a2927" />
-          </TouchableOpacity>
+  <Icon name="sign-out" size={32} color="#2a2927" />
+</TouchableOpacity>
+
         </View>
       </View>
 
       {/* Bottom Navbar */}
       <View style={styles.glassNavbar}>
-        <TouchableOpacity onPress={() => navigation.navigate("QRScreen")}>
-          <Icon
-            name="qrcode"
-            size={24}
-            color={activeIcon === "QRScreen" ? "black" : "white"}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Record")}>
-          <Icon
-            name="microphone"
-            size={24}
-            color={activeIcon === "record" ? "black" : "white"}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Schedule")}>
-          <Icon
-            name="calendar"
-            size={24}
-            color={activeIcon === "schedule" ? "black" : "white"}
-          />
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={() => navigation.navigate("Checklist")}>
-          <Icon
-            name="clipboard"
-            size={24}
-            color={activeIcon === "checklist" ? "black" : "white"}
-          />
-        </TouchableOpacity>
+        {[
+          { name: "QRScreen", icon: "qrcode" },
+          { name: "Record", icon: "microphone" },
+          { name: "Schedule", icon: "calendar" },
+          { name: "Checklist", icon: "clipboard" },
+        ].map((item) => (
+          <TouchableOpacity key={item.name} onPress={() => handleIconClick(item.name)}>
+            <View
+              style={[
+                styles.iconWrapper,
+                activeIcon === item.name && styles.activeIconWrapper,
+              ]}
+            >
+              <Icon
+                name={item.icon}
+                size={24}
+                color={activeIcon === item.name ? "black" : "white"}
+              />
+            </View>
+          </TouchableOpacity>
+        ))}
       </View>
     </>
   );
