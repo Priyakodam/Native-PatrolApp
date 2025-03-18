@@ -6,9 +6,13 @@ import RegisterScreen from "./screens/Register/RegisterScreen";
 import NavScreen from "./screens/Navbar/NavScreen";
 import ScheduleScreen from "./screens/Schedule/ScheduleScreen";
 import RecordScreen from "./screens/Record/RecordScreen";
+import CameraScreen from './screens/CameraScreen';
+import AudioScreen from './screens/AudioScreen';
+import VideoScreen from './screens/VideoScreen';
 import ChecklistScreen from "./screens/Checklist/ChecklistScreen";
 import QRScreen from "./screens/QRCodeScanner/QRCodeScreen";
 import OtpScreen from "./screens/Otp/OtpScreen";
+import UploadScreen from "./screens/UploadScreen";
 
 const Stack = createStackNavigator();
 
@@ -51,6 +55,10 @@ export default function App() {
         >
           {() => <ScreenWithNav component={RecordScreen} />}
         </Stack.Screen>
+        <Stack.Screen name="CameraScreen" component={CameraScreen} />
+        <Stack.Screen name="AudioScreen" component={AudioScreen} />
+        <Stack.Screen name="VideoScreen" component={VideoScreen} />
+        <Stack.Screen name="UploadScreen" component={UploadScreen} />
 
         <Stack.Screen
           name="QRScreen"

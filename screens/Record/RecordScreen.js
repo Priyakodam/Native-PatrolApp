@@ -1,84 +1,50 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { CameraView, useCameraPermissions, Camera } from 'expo-camera';
-import { AntDesign } from '@expo/vector-icons';
-import PhotoPreviewSection from "../PhotoPreviewSection";
+import React from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { FontAwesome5 } from "@expo/vector-icons"; // Use FontAwesome5 icons
 
-export default function CameraScreen() {
-  const [permission, requestPermission] = useCameraPermissions();
-  const [facing, setFacing] = useState("back");
-  const [photo, setPhoto] = useState(null);
-  const cameraRef = useRef(null);
-
-  
-  useEffect(() => {
-    if (!permission) {
-      requestPermission();
-    }
-  }, [permission]);
-
-  if (!permission) return <View />;
-
-
-  if (!permission.granted) {
-    return (
-      <View style={styles.container}>
-        <Text>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="Grant Permission" />
-      </View>
-    );
-  }
-
-  const toggleCameraFacing = () => {
-    setFacing(current => (current === 'back' ? 'front' : 'back'));
-  };
-
-  const handlePhotoCapture = async () => {
-    if (cameraRef.current) {
-      const photoData = await cameraRef.current.takePictureAsync({ base64: true });
-      setPhoto(photoData);
-    }
-  };
-
-  if (photo) {
-    return <PhotoPreviewSection photo={photo} handleRetakePhoto={() => setPhoto(null)} />;
-  }
+export default function RecordScreen() {
+  const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-      <CameraView
-        style={styles.camera}
-        facing={facing}
-        ref={cameraRef}
-        photo // enables photo capture
-      >
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
-            <AntDesign name="retweet" size={100} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={handlePhotoCapture}>
-            <AntDesign name="camera" size={100} color="black" />
-          </TouchableOpacity>
-        </View>
-      </CameraView>
+      <View style={styles.iconContainer}>
+        {/* Image Capture Icon */}
+        <TouchableOpacity onPress={() => navigation.navigate("CameraScreen")}>
+          <View style={styles.iconWrapper}>
+            <FontAwesome5 name="camera" size={50} color="white" />
+          </View>
+        </TouchableOpacity>
+
+        {/* Audio Recording Icon */}
+        <TouchableOpacity onPress={() => navigation.navigate("AudioScreen")}>
+          <View style={styles.iconWrapper}>
+            <FontAwesome5 name="microphone" size={50} color="white" />
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.iconContainer}>
+        {/* Video Recording Icon */}
+        <TouchableOpacity onPress={() => navigation.navigate("VideoScreen")}>
+          <View style={styles.iconWrapper}>
+            <FontAwesome5 name="video" size={50} color="white" />
+          </View>
+        </TouchableOpacity>
+
+        {/* File Upload Icon */}
+        <TouchableOpacity onPress={() => navigation.navigate("UploadScreen")}>
+          <View style={styles.iconWrapper}>
+            <FontAwesome5 name="upload" size={50} color="white" />
+          </View>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: 'center' },
-  camera: { flex: 1 },
-  buttonContainer: {
-    position: "absolute",
-    bottom: 100,
-    flexDirection: "row",
-    justifyContent: "center",
-    width: "100%",
-  },
-  button: {
-    padding: 10,
-    backgroundColor: "rgba(0,0,0,0.5)",
-    borderRadius: 10,
-    marginHorizontal: 10,
-  },
+  container: { flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#222" },
+  iconContainer: { flexDirection: "row", justifyContent: "space-around", width: "80%", marginVertical: 20 },
+  iconWrapper: { padding: 20, backgroundColor: "#444", borderRadius: 10, alignItems: "center" },
 });
