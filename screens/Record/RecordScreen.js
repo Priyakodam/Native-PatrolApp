@@ -26,11 +26,11 @@ export default function RecordScreen() {
 
       <View style={styles.iconContainer}>
         {/* Video Recording Icon */}
-        <TouchableOpacity onPress={() => navigation.navigate("Video")}>
+        {/* <TouchableOpacity onPress={() => navigation.navigate("Video")}>
           <View style={styles.iconWrapper}>
             <FontAwesome5 name="video" size={50} color="white" />
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* File Upload Icon */}
         <TouchableOpacity onPress={() => navigation.navigate("UploadScreen")}>
