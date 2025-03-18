@@ -10,17 +10,16 @@ export default function CameraScreen() {
   const [photo, setPhoto] = useState(null);
   const cameraRef = useRef(null);
 
-  // Ask for camera permissions on mount
+  
   useEffect(() => {
     if (!permission) {
       requestPermission();
     }
   }, [permission]);
 
-  // If permission is null, return nothing (prevents errors)
   if (!permission) return <View />;
 
-  // If permission is denied, show a request button
+
   if (!permission.granted) {
     return (
       <View style={styles.container}>
