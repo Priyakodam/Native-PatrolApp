@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Button, Alert } from 'react-native';
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import styles from './QRCodeStyles'; // ✅ Import styles from separate file
+import styles from './QRCodeStyles'; //  Import styles from separate file
 
 const QRScreen = () => {
   const [permission, requestPermission] = useCameraPermissions();
-  const [facing, setFacing] = useState('back'); // Using string to prevent undefined errors
+  const [facing, setFacing] = useState('back'); // Ensures a valid string value
 
   if (!permission) return <View />;
   
@@ -29,13 +29,24 @@ const QRScreen = () => {
   return (
     <View style={styles.container}>
       <CameraView style={styles.camera} facing={facing}>
+        {/*  Square Scanner Frame Overlay */}
+        <View style={styles.overlay}>
+          <View style={styles.scannerFrame}>
+            <View style={styles.borderTopLeft} />
+            <View style={styles.borderTopRight} />
+            <View style={styles.borderBottomLeft} />
+            <View style={styles.borderBottomRight} />
+          </View>
+        </View>
+
+        {/*  Camera Controls */}
         <View style={styles.controls}>
           <TouchableOpacity style={styles.button} onPress={toggleCameraFacing}>
             <Text style={styles.buttonText}>Flip Camera</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.captureButton} onPress={takePicture}>
-            <Text style={styles.buttonText}>Capture Photo</Text>
+            <Text style={styles.buttonText}>Capture</Text>
           </TouchableOpacity>
         </View>
       </CameraView>
