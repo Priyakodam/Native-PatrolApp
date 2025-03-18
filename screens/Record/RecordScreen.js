@@ -10,7 +10,7 @@ export default function RecordScreen() {
     <View style={styles.container}>
       <View style={styles.iconContainer}>
         {/* Image Capture Icon */}
-        <TouchableOpacity onPress={() => navigation.navigate("CameraScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("CamFunScreen")}>
           <View style={styles.iconWrapper}>
             <FontAwesome5 name="camera" size={50} color="white" />
           </View>
@@ -26,7 +26,7 @@ export default function RecordScreen() {
 
       <View style={styles.iconContainer}>
         {/* Video Recording Icon */}
-        <TouchableOpacity onPress={() => navigation.navigate("VideoScreen")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Video")}>
           <View style={styles.iconWrapper}>
             <FontAwesome5 name="video" size={50} color="white" />
           </View>
