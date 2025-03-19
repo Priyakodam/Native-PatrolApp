@@ -14,28 +14,37 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import styles from "./RegisterStyles";
 import logo from "../Img/solidz_logo_png.png";
+import APIURLS from "../../apiUtils/apiURLs";
+import { sendOTP } from "../../apiUtils/apiServices/OTPServices";
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!phoneNumber) {
-      Alert.alert("Error", "Please enter all fields.");
+      Alert.alert("Error", "Please enter your phone number.");
       return;
     }
 
-    const generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+    try {
+      const response = await sendOTP(phoneNumber);
+      console.log("Parsed Response:", response);
 
-    console.log("Generated OTP:", generatedOTP);
-
-    Alert.alert("Your OTP", `Your OTP is: ${generatedOTP}`);
-
-    setTimeout(() => {
-      navigation.navigate("Otp", { generatedOTP });
-    }, 500);
+      if (response.otp) {
+        navigation.navigate("Otp", {
+          generatedOTP: response.otp.toString(),
+          mobile: phoneNumber,
+        });
+      } else {
+        Alert.alert("Error", "OTP not received. Please try again.");
+      }
+    } catch (error) {
+      Alert.alert("Error", "Something went wrong. Please try again.");
+    }
   };
-
+  
+  
   return (
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView

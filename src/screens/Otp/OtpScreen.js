@@ -36,13 +36,13 @@ export default function OTPScreen({ route, navigation }) {
 
   const handleVerifyOTP = () => {
     const enteredOTP = otp.join(""); // Join OTP array into string
-
+    console.log("Entered OTP:", enteredOTP, "Generated OTP:", generatedOTP);
     if (enteredOTP === generatedOTP) {
       Alert.alert("Success", "OTP Verified Successfully!");
       navigation.navigate("QRScreen"); // Navigate to main screen
     } else {
       Alert.alert("Error", "Incorrect OTP! Try again.");
-      navigation.navigate("Register"); // Go back to Register
+      // navigation.navigate("Register"); 
     }
   };
 
