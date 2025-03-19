@@ -75,6 +75,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: responsiveHeight(3),
   },
+
+  otpsubmitbutton: {
+    width: responsiveWidth(40),
+    height: responsiveHeight(4.5),
+    backgroundColor: "#000",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: responsiveWidth(2),
+    top :responsiveHeight(1.2),
+  },
+  otpsubmitbuttonText: {
+    color: "#fff",
+    fontSize: responsiveFontSize(2),
+    fontWeight: "bold",
+  },
 });
 
 export default styles;

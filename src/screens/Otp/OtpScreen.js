@@ -77,9 +77,13 @@ export default function OTPScreen({ route, navigation }) {
           </View>
 
           {/* Adjust Submit Button Position */}
-          <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={handleVerifyOTP}>
+          {/* <TouchableOpacity style={[styles.button, { marginTop: 20 }]} onPress={handleVerifyOTP}>
             <Text style={styles.buttonText}>Submit</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+
+          <TouchableOpacity style={styles.otpsubmitbutton} onPress={handleVerifyOTP}>
+              <Text style={styles.otpsubmitbuttonText}>Submit</Text>
+            </TouchableOpacity>
 
           <Text style={styles.didntReceive}>Didn't receive the code?</Text>
           <TouchableOpacity>
