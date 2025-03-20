@@ -9,7 +9,7 @@ export const sendOTP = async (phoneNumber) => {
       },
       body: JSON.stringify({
         mobile: phoneNumber,
-        imei: "1234567890", // hardcoded or pass it dynamically if needed
+        imei: "1234567890", 
       }),
     });
 
