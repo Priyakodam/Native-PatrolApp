@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button, Linking } from "react-native";
 import { CameraView, Camera } from "expo-camera";
-import { responsiveHeight, responsiveWidth } from "react-native-responsive-dimensions";
+import {
+  responsiveHeight,
+  responsiveWidth,
+} from "react-native-responsive-dimensions";
+import APIURLS from "../../apiUtils/apiURLs";
+import { useUser } from "../../context/UserContext";
 
 export default function App() {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const { phoneNumber } = useUser();
 
   useEffect(() => {
     const getCameraPermissions = async () => {
@@ -16,15 +22,58 @@ export default function App() {
     getCameraPermissions();
   }, []);
 
-  const handleBarcodeScanned = ({ type, data }) => {
+  const handleBarcodeScanned = async ({ type, data }) => {
     if (!scanned) {
       setScanned(true);
 
-      // Check if the scanned data is a valid URL
+      try {
+        const payload = {
+          data: JSON.stringify({
+            mobile: phoneNumber,
+            dt: new Date().toISOString().replace("T", " ").slice(0, 19),
+            location: data,
+          }),
+        };
+
+        console.log("Storing this data to API:", payload);
+
+        console.log("Sending QR data to:", APIURLS.COLLECT_QR_DATA);
+
+        const response = await fetch(APIURLS.COLLECT_QR_DATA, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const responseText = await response.text();
+        console.log("Raw API Response:", responseText);
+
+        try {
+          const jsonSafeString = responseText.replace(/'/g, '"');
+          const result = JSON.parse(jsonSafeString);
+
+          if (result.status === "success") {
+            alert("QR data collected and stored successfully.");
+            console.log("Parsed Success Response:", result);
+          } else {
+            alert("Failed to store QR data.");
+            console.log("Parsed Error Response:", result);
+          }
+        } catch (parseError) {
+          console.error("Response is not JSON parsable:", parseError);
+          alert("Received invalid JSON format from server.");
+        }
+      } catch (error) {
+        console.error("Network or Server Error:", error);
+        alert("Error sending QR data. Check console for details.");
+      }
+
       if (data.startsWith("http://") || data.startsWith("https://")) {
-        Linking.openURL(data); // Redirect to URL
+        Linking.openURL(data);
       } else {
-        alert(`Scanned Data: ${data}`); // Show alert if not a URL
+        alert(`Scanned Data: ${data}`);
       }
     }
   };
@@ -45,7 +94,6 @@ export default function App() {
         }}
         style={StyleSheet.absoluteFillObject}
       >
-        {/* QR Scan Border Frame */}
         <View style={styles.overlay}>
           <View style={styles.scanBorder} />
         </View>
@@ -53,7 +101,10 @@ export default function App() {
 
       {scanned && (
         <View style={styles.buttonContainer}>
-          <Button title={"Tap to Scan Again"} onPress={() => setScanned(false)} />
+          <Button
+            title={"Tap to Scan Again"}
+            onPress={() => setScanned(false)}
+          />
         </View>
       )}
     </View>

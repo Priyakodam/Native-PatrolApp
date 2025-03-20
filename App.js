@@ -15,21 +15,25 @@ import QRScreen from "./src/screens/QRCodeScanner/QRCodeScreen";
 import OtpScreen from "./src/screens/Otp/OtpScreen";
 import UploadScreen from "./src/screens/UploadScreen";
 import CameraFunction from "./src/screens/CameraFunction";
-
+import { UserProvider } from "./src/context/UserContext";
 const Stack = createStackNavigator();
 
 // Higher-Order Component to wrap screens with NavScreen
 const ScreenWithNav = ({ component: Component }) => {
   return (
+   
     <View style={styles.container}>
       <Component />
       <NavScreen />
+      
     </View>
+    
   );
 };
 
 export default function App() {
   return (
+    <UserProvider>
     <NavigationContainer>
       <Stack.Navigator>
         {/* No Navbar on Register and OTP Screens */}
@@ -72,6 +76,7 @@ export default function App() {
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
+    </UserProvider>
   );
 }
 

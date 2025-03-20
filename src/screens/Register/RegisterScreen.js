@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext  } from "react";
 import {
   View,
   Text,
@@ -16,25 +16,27 @@ import styles from "./RegisterStyles";
 import logo from "../Img/solidz_logo_png.png";
 import APIURLS from "../../apiUtils/apiURLs";
 import { sendOTP } from "../../apiUtils/apiServices/OTPServices";
+import { useUser  } from "../../context/UserContext";
 
 const RegisterScreen = () => {
   const navigation = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState("");
-
+  const [localPhoneNumber, setLocalPhoneNumber] = useState("");
+  const { setPhoneNumber } = useUser();
   const handleRegister = async () => {
-    if (!phoneNumber) {
+    if (!localPhoneNumber) {
       Alert.alert("Error", "Please enter your phone number.");
       return;
     }
-
+  
     try {
-      const response = await sendOTP(phoneNumber);
+      const response = await sendOTP(localPhoneNumber);
       console.log("Parsed Response:", response);
-
+  
       if (response.otp) {
+        setPhoneNumber(localPhoneNumber); // Save to context
         navigation.navigate("Otp", {
           generatedOTP: response.otp.toString(),
-          mobile: phoneNumber,
+          mobile: localPhoneNumber,
         });
       } else {
         Alert.alert("Error", "OTP not received. Please try again.");
@@ -63,8 +65,8 @@ const RegisterScreen = () => {
               placeholder="Phone number"
               placeholderTextColor="#888"
               keyboardType="phone-pad"
-              value={phoneNumber}
-              onChangeText={setPhoneNumber}
+              value={localPhoneNumber}
+              onChangeText={setLocalPhoneNumber}
             />
 
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
