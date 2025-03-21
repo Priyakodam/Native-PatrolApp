@@ -13,6 +13,10 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import * as MediaLibrary from "expo-media-library";
 import Slider from "@react-native-community/slider";
+import { useUser } from "../context/UserContext";
+import { Alert } from 'react-native';
+import { uploadVideoToAPI } from "../apiUtils/apiServices/VideoServices";
+
 
 export default function CameraFunction() {
   const [cameraPermission, setCameraPermission] = useState();
@@ -25,6 +29,8 @@ export default function CameraFunction() {
   const [flashMode, setFlashMode] = useState("on");
   const [recording, setRecording] = useState(false);
   const [zoom, setZoom] = useState(0);
+  const [uploading, setUploading] = useState(false);
+   const { phoneNumber } = useUser();
   let cameraRef = useRef();
   const navigation = useNavigation();
 
@@ -103,18 +109,43 @@ export default function CameraFunction() {
     );
   }
 
+
+
+  
+  
+  
+
   async function recordVideo() {
     setRecording(true);
     try {
       const newVideo = await cameraRef.current.recordAsync({ maxDuration: 30 });
       setVideo(newVideo);
       setRecording(false);
+  
+      Alert.alert(
+        "Upload Video",
+        "Do you want to upload this video?",
+        [
+          {
+            text: "No",
+            onPress: () => console.log("Upload cancelled"),
+            style: "cancel",
+          },
+          {
+            text: "Yes",
+            onPress: () => uploadVideoToAPI(newVideo.uri, phoneNumber, navigation),
+          },
+        ],
+        { cancelable: false }
+      );
     } catch (error) {
       console.error("Recording failed: ", error);
       setRecording(false);
     }
   }
-
+  
+  
+  
   function stopRecording() {
     if (cameraRef.current) {
       cameraRef.current.stopRecording();
@@ -185,6 +216,9 @@ export default function CameraFunction() {
               <Ionicons name="play-circle-outline" size={40} color="white" />
             </TouchableOpacity>
           )}
+
+{uploading && <Text style={{ color: "white", textAlign: "center" }}>Uploading video...</Text>}
+
         </View>
       </CameraView>
     </View>
