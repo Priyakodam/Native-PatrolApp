@@ -11,8 +11,6 @@ export const uploadVideoToAPI = async (videoUri, phoneNumber,navigation) => {
     const payload = {
         data: JSON.stringify({
           mobile: phoneNumber,
-          dt: new Date().toISOString().replace("T", " ").slice(0, 19),
-          location: "QR12345",
           videoData: base64Video,
         }),
       };
