@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, Alert } from "react-native";
 import { Audio } from "expo-av";
 import { AntDesign } from "@expo/vector-icons";
+import * as FileSystem from "expo-file-system";
+import { useUser } from "../context/UserContext";
+import {uploadAudio } from "../apiUtils/apiServices/AudioServices";
 
 export default function AudioScreen() {
   const [recording, setRecording] = useState(null);
-  const [sound, setSound] = useState(null);
   const [recordingUri, setRecordingUri] = useState(null);
+  const { phoneNumber } = useUser();
 
   useEffect(() => {
     (async () => {
@@ -44,24 +47,17 @@ export default function AudioScreen() {
     }
   };
 
-  const playRecording = async () => {
-    if (recordingUri) {
-      const { sound } = await Audio.Sound.createAsync({ uri: recordingUri }, { shouldPlay: true });
-      setSound(sound);
-      await sound.playAsync();
-    }
-  };
-
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={recording ? stopRecording : startRecording}>
         <AntDesign name={recording ? "pausecircle" : "play"} size={80} color="black" />
         <Text>{recording ? "Stop Recording" : "Start Recording"}</Text>
       </TouchableOpacity>
+
       {recordingUri && (
-        <TouchableOpacity style={styles.button} onPress={playRecording}>
-          <AntDesign name="playcircleo" size={80} color="black" />
-          <Text>Play Recording</Text>
+        <TouchableOpacity style={styles.button} onPress={() => uploadAudio(recordingUri, phoneNumber)}>
+          <AntDesign name="upload" size={80} color="black" />
+          <Text>Upload Recording</Text>
         </TouchableOpacity>
       )}
     </View>
