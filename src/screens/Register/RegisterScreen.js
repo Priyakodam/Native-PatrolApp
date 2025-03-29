@@ -22,6 +22,8 @@ const RegisterScreen = () => {
   const navigation = useNavigation();
   const [localPhoneNumber, setLocalPhoneNumber] = useState("");
   const { setPhoneNumber } = useUser();
+
+
   const handleRegister = async () => {
     if (!localPhoneNumber) {
       Alert.alert("Error", "Please enter your phone number.");
@@ -31,20 +33,25 @@ const RegisterScreen = () => {
     try {
       const response = await sendOTP(localPhoneNumber);
       console.log("Parsed Response:", response);
-  
-      if (response.otp) {
-        setPhoneNumber(localPhoneNumber); // Save to context
-        navigation.navigate("Otp", {
-          generatedOTP: response.otp.toString(),
-          mobile: localPhoneNumber,
-        });
-      } else {
-        Alert.alert("Error", "OTP not received. Please try again.");
-      }
-    } catch (error) {
-      Alert.alert("Error", "Something went wrong. Please try again.");
-    }
-  };
+  //  Alert.alert("Response Received", JSON.stringify(response)); 
+   if (response.otp) {
+    setPhoneNumber(localPhoneNumber);
+
+    // Small delay to avoid navigation glitches in APK builds
+    setTimeout(() => {
+      navigation.navigate("Otp", {
+        generatedOTP: response.otp.toString(),
+        mobile: localPhoneNumber,
+      });
+    }, 200);
+  } else {
+    Alert.alert("Error", "OTP not received. Please try again.");
+  }
+} catch (error) {
+  console.error("Error in handleRegister:", error);
+  Alert.alert("Error", "Something went wrong. Please try again.");
+}
+};
   
   
   return (

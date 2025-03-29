@@ -24,7 +24,7 @@ export default function VideoScreen({ route }) {
 
   const player = useVideoPlayer(uri, (player) => {
     player.loop = true;
-    player.play();
+    // player.play();
   });
 
   const { isPlaying } = useEvent(player, "playingChange", {
@@ -57,7 +57,7 @@ export default function VideoScreen({ route }) {
           }}
         />
       </View>
-      <View style={styles.btnContainer}>
+      {/* <View style={styles.btnContainer}>
         <TouchableOpacity onPress={saveVideo} style={styles.btn}>
           <Ionicons name="save-outline" size={30} color="black" />
         </TouchableOpacity>
@@ -67,7 +67,7 @@ export default function VideoScreen({ route }) {
         >
           <Ionicons name="trash-outline" size={30} color="black" />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingHorizontal: 50,
+    backgroundColor: '#111',
   },
   video: {
     width: 350,

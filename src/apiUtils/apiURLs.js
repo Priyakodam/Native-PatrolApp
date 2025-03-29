@@ -1,4 +1,4 @@
-const SOLIDZ_BASE_URL = 'https://app.solidz.io/';
+const SOLIDZ_BASE_URL = process.env.API_URL || 'https://app.solidz.io/';
 const MOBILE_VERIFY_ENDPOINT = 'mobile_verify/';
 const COLLECT_QR_DATA ='guard_patrol/collect_data/';
 const APIURLS = {
